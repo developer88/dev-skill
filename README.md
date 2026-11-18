@@ -15,10 +15,17 @@ Universal development rules and behavioral constraints for AI coding agents (Ant
 2. **Execution Environment Hygiene:**
    - **Node.js & NPM inside WSL**: On Windows workstations with WSL, `npm` and `node` tasks must always run inside WSL (`wsl -- npm ...`), avoiding native Windows node path conflicts.
 
-3. **General Development Discipline:**
-   - **Verification before completion**: Test suites and typechecks must be verified prior to completing tasks.
-   - **Git cleanliness**: Always check `git status -s` and `git diff` before committing.
-   - **Credential safety**: Strict prohibition against committing `.env` files or raw API secrets.
+3. **Comprehensive Test Coverage:**
+   - **Full test pyramid**: Every piece of work must have thorough test coverage—not just unit tests, but also integration tests and screenshot / visual regression tests for UI changes.
+   - **Zero failure policy**: All tests across all suites must pass with 100% success before finishing.
+
+4. **Mandatory Manual Acceptance by Independent Agent:**
+   - **Independent verification**: Every finished task must pass manual acceptance testing performed by an independent agent (or dedicated review subagent).
+   - **Thorough UI inspection**: The agent manually checks all UI elements, clicks through interactive components, inspects visual state, and validates that the solution is functional, stable, and completely bug-free.
+
+5. **General Development Discipline:**
+   - **Clean Git State**: Inspect changes with `git status -s` and `git diff` before committing.
+   - **Credential Safety**: Strict prohibition against committing `.env` files or raw API secrets.
 
 ---
 
@@ -60,21 +67,18 @@ npx skills add https://github.com/developer88/dev-skill.git -g
 If you prefer installing manually without `npx`:
 
 ### Google Antigravity & Gemini CLI
-Clone or copy `SKILL.md` into your global config directory:
+Clone or symlink `SKILL.md` into your global config directory:
 ```bash
-# Windows
-mkdir "%USERPROFILE%\.gemini\config\skills\dev-skill"
-copy SKILL.md "%USERPROFILE%\.gemini\config\skills\dev-skill\"
+# Windows (Junction)
+New-Item -ItemType Junction -Path "$HOME\.gemini\config\skills\dev-skill" -Target "<path_to_repo>"
 
-# Linux / macOS / WSL
-mkdir -p ~/.gemini/config/skills/dev-skill
-cp SKILL.md ~/.gemini/config/skills/dev-skill/
+# Linux / macOS / WSL (Symlink)
+ln -s "<path_to_repo>" ~/.gemini/config/skills/dev-skill
 ```
 
 ### Claude Code
 ```bash
-mkdir -p ~/.claude/skills/dev-skill
-cp SKILL.md ~/.claude/skills/dev-skill/
+ln -s "<path_to_repo>" ~/.claude/skills/dev-skill
 ```
 
 ---

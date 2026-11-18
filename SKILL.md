@@ -1,6 +1,6 @@
 ---
 name: dev-skill
-description: General rules on how things work and how the AI agent must behave across projects, including strict release, git, and execution constraints.
+description: General rules on how things work and how the AI agent must behave across projects, including strict release, git, test coverage, manual acceptance, and execution constraints.
 ---
 
 # Dev Skill: General Rules & Agent Behavior
@@ -24,8 +24,25 @@ This skill defines universal operational rules, safety boundaries, and workflow 
 - **Node.js & NPM:** ALWAYS execute `npm` and `node` inside WSL (e.g., `npm install`, `npm run dev`, `npm test`, `npm run build`).
 - **Windows Host:** Never invoke `node` directly from Windows itself.
 
-## 3. General Development Hygiene
+## 3. Comprehensive Test Coverage
 
-- **Verification Before Completion:** Always run tests and verify changes before declaring a task complete.
+Every piece of work must have proper and thorough test coverage across all layers:
+
+- **Not Just Unit Tests:** Unit tests alone are never sufficient. Test suites must cover the real behavior of the feature or fix.
+- **Integration Tests:** Verify component interactions, API requests/responses, state persistence, and full user journeys.
+- **Screenshot & Visual Regression Tests:** Any work touching the user interface must include screenshot / visual tests to verify styling, layout, theme compatibility, and responsiveness across breakpoints.
+- **All Tests Must Pass:** 100% of the test suite (unit, integration, and visual tests) must be green prior to considering work complete.
+
+## 4. Mandatory Manual Acceptance by Independent Agent
+
+Every finished piece of work must undergo and pass manual acceptance testing:
+
+- **Independent Reviewer/Agent:** An independent verification agent (or fresh verification subagent) must inspect all changes.
+- **Manual UI & Behavior Walkthrough:** The independent agent must manually check all altered UI elements, click through interactive flows, exercise empty/loading/error states, and inspect console logs/network behavior.
+- **Zero Bug Guarantee:** The agent must rigorously validate that the changes work as intended in practice and introduce zero bugs or regressions before marking the task done.
+
+## 5. General Development Hygiene
+
+- **Verification Before Completion:** Always run test suites and verification checks before declaring a task complete.
 - **Clean Git State:** Inspect changes with `git status -s` and `git diff` before committing.
 - **Safety First:** Never commit secrets, credentials, or `.env` files to version control.
