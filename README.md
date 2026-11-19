@@ -26,7 +26,11 @@ Universal development rules and behavioral constraints for AI coding agents (Ant
    - **Independent verification**: Every finished task must pass manual acceptance testing performed by an independent agent (or dedicated review subagent).
    - **Thorough UI inspection**: The agent manually checks all UI elements, clicks through interactive components, inspects visual state, and validates that the solution is functional, stable, and completely bug-free.
 
-5. **General Development Discipline:**
+5. **Obsidian Kanban Board Tasks:**
+   - **One-liners (< 10 words)**: Can be added directly as plain task items on the Kanban board.
+   - **Detailed tasks (Long titles, descriptions, extra info)**: Must always be created as a dedicated subpage in the same directory as the Kanban board, and then linked onto the board (`[[Task Subpage]]`).
+
+6. **General Development Discipline:**
    - **Clean Git State**: Inspect changes with `git status -s` and `git diff` before committing.
    - **Credential Safety**: Strict prohibition against committing `.env` files or raw API secrets.
 

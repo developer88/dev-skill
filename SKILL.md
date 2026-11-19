@@ -1,6 +1,6 @@
 ---
 name: dev-skill
-description: General rules on how things work and how the AI agent must behave across projects, including strict release, git, test coverage, manual acceptance, changelogs, and execution constraints.
+description: General rules on how things work and how the AI agent must behave across projects, including strict release, git, test coverage, manual acceptance, changelogs, Obsidian Kanban tasks, and execution constraints.
 ---
 
 # Dev Skill: General Rules & Agent Behavior
@@ -51,7 +51,19 @@ Every finished piece of work must undergo and pass manual acceptance testing:
 - **Manual UI & Behavior Walkthrough:** The independent agent must manually check all altered UI elements, click through interactive flows, exercise empty/loading/error states, and inspect console logs/network behavior.
 - **Zero Bug Guarantee:** The agent must rigorously validate that the changes work as intended in practice and introduce zero bugs or regressions before marking the task done.
 
-## 5. General Development Hygiene
+## 5. Obsidian Kanban Board Tasks
+
+When adding or managing tasks on an Obsidian Kanban board:
+
+- **Short Tasks (One-liners):**
+  - If a task is concise (a simple one-liner of around 10 words or fewer) without needing additional context or description, it can be added directly as a plain task item on the board.
+- **Detailed Tasks (Long Titles, Descriptions, or Context):**
+  - If a task has a long title, requires a description, context, acceptance criteria, or any additional notes/information:
+    - **Always create a dedicated subpage (`.md` file)** in the exact same directory where the Kanban board file is located.
+    - Place the detailed title, full description, checklist, and background info in that subpage.
+    - **Link the subpage as the task item** on the Kanban board (e.g., `- [ ] [[Subpage Name]]`).
+
+## 6. General Development Hygiene
 
 - **Verification Before Completion:** Always run test suites and verification checks before declaring a task complete.
 - **Clean Git State:** Inspect changes with `git status -s` and `git diff` before committing.
