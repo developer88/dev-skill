@@ -11,6 +11,9 @@ Universal development rules and behavioral constraints for AI coding agents (Ant
 1. **Releases & Tags Guardrail:**
    - **Never create releases or tags autonomously**: The agent will never run `git tag` or publish GitHub/GitLab releases without an explicit, direct instruction from the user.
    - **Never update already published releases**: The agent will not modify, overwrite, re-tag, delete, or re-upload assets for existing published releases unless explicitly directed.
+   - **Audience-Appropriate Changelogs**:
+     - *User-Facing (UI) Projects*: Changelogs must be clear and understandable for non-super technical people. Do not dump raw git commits; rephrase and explain what actually changed and what benefit it brings.
+     - *Tooling / Non-UI Projects*: Standard technical/developer changelogs are used.
 
 2. **Execution Environment Hygiene:**
    - **Node.js & NPM inside WSL**: On Windows workstations with WSL, `npm` and `node` tasks must always run inside WSL (`wsl -- npm ...`), avoiding native Windows node path conflicts.

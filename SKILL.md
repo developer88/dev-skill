@@ -1,6 +1,6 @@
 ---
 name: dev-skill
-description: General rules on how things work and how the AI agent must behave across projects, including strict release, git, test coverage, manual acceptance, and execution constraints.
+description: General rules on how things work and how the AI agent must behave across projects, including strict release, git, test coverage, manual acceptance, changelogs, and execution constraints.
 ---
 
 # Dev Skill: General Rules & Agent Behavior
@@ -18,6 +18,16 @@ This skill defines universal operational rules, safety boundaries, and workflow 
    - Do not edit, overwrite, modify, or delete existing releases or tags that have already been published.
    - Do not re-tag existing versions to new commits.
    - Do not re-upload or replace assets on published releases unless explicitly instructed by the user.
+
+3. **User-Facing vs. Developer Changelogs & Release Notes:**
+   - **User-Facing Projects (Apps with a UI):**
+     - If the project is user-facing (e.g. web apps, mobile apps, desktop apps, browser extensions, Obsidian plugins with a UI):
+       - The changelog / release notes must be easily understandable for non-super technical people.
+       - **Do NOT** just list raw git commit messages or developer shorthand (e.g., "refactor hook dependencies", "bump tsx version").
+       - **Rephrase and elaborate:** Deliver clear, detailed explanations of what actually changed from an end-user perspective, what problems were solved, and what new capabilities are available.
+   - **Tooling / Non-UI Projects (CLI tools, libraries, backend services):**
+     - If the project is strictly a developer tool, CLI utility, library, or backend infrastructure without an end-user UI:
+       - Standard developer-oriented changelogs (e.g., Conventional Commits, technical bullet points) are appropriate.
 
 ## 2. Environment & Command Execution
 
